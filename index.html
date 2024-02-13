@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facebook Login Page</title>
+  <style>
+    body {
+      font-family: 'Klavika', sans-serif;
+      background-color: #f0f2f5;
+    }
+    .container {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: left;
+      font-size: 4em;
+      color: #11569d;
+    }
+    input[type="text"], input[type="password"], input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px 0;
+      border: 1px solid #000;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .option-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    input[type="checkbox"] {
+      margin-right: 5px;
+    }
+    .option-label {
+      margin-right: 5px;
+      font-size: 15px;
+    }
+    input[type="submit"] {
+      font-size: 18px;
+      font-weight: bold;
+      border: #1877f2;
+      background-color: #1877f2;
+      color: #fff;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #11569d;
+    }
+    .loader {
+      border: 10px solid #f3f3f3;
+      border-top: 10px solid #1877f2;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 0.5s linear infinite;
+      margin: 0 auto;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>facebook</h1>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Mobile number or email" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <div class="option-container">
+        <input type="checkbox" id="showPassword">
+        <label for="showPassword" class="option-label">Show Password</label>
+      </div>
+      <input type="submit" value="Log In">
+      <div id="loader" class="loader" style="display: none;"></div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+      console.log("Mobile number or email: " + username);
+      console.log("Password: " + password);
+      var form = document.getElementById("loginForm");
+      form.innerHTML = "<p style='font-weight: bold;'>Logging In...</p><div class='loader' style='display: block;'></div>";
+
+      setTimeout(function() {
+        form.innerHTML = "<p style='font-weight: bold;'>Logged In Successfully!</p>";
+      }, 3000);
+    });
+
+    document.getElementById("showPassword").addEventListener("change", function() {
+      var passwordField = document.getElementById("password");
+      passwordField.type = this.checked ? "text" : "password";
+    });
+  </script>
+</body>
+</html>
